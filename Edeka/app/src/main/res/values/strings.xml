@@ -17,10 +17,23 @@
     <string name="opening_hours_sa">Sa: 07:00 - 20:00 Uhr</string>
 
     <!--Contact -->
-    <!--<string name="title">Sa: 07:00 - 20:00 Uhr</string>
-    <string name="title_opening_hours_sa">Sa: 07:00 - 20:00 Uhr</string>
-    <string name="title_opening_hours_sa">Sa: 07:00 - 20:00 Uhr</string>
-    <string name="title_opening_hours_sa">Sa: 07:00 - 20:00 Uhr</string>-->
+    <string name="headline_contact">So erreichen Sie uns</string>
+    <string name="phone_contact">Tel: 09971 / 3927960</string>
+    <string name="fax_contact">Fax: 09971 / 3927961</string>
+    <string name="address_contact">Darsteinstr. 10, 93413 Cham</string>
+
+
+    <!--Services -->
+    <string name="headline_services">Verfügbare Services</string>
+    <string name="service_backshop">Backshop / Bäckerei</string>
+    <string name="service_DC">DeutschlandCard</string>
+    <string name="service_coupon_card">EDEKA Gutscheinkarte</string>
+    <string name="service_shopping_coupon">Einkaufsgutscheine</string>
+    <string name="service_fish">Fischtheke</string>
+    <string name="service_meat">Fleisch- &amp; Wursttheke</string>
+    <string name="service_drinks">Getränkeshop</string>
+    <string name="service_parking">Kostenfreie Parkplätze</string>
+
 
 
 </resources>

@@ -63,8 +63,61 @@
         android:textColor="@color/colorText" />
 
     <!-- Contact -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginLeft="15dp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:text="@string/headline_contact"
+        android:id="@+id/headline_contact"
+        android:layout_below="@+id/text_opening_hours_sa"
+        android:textColor="@color/colorText" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginLeft="15dp"
+        android:text="@string/phone_contact"
+        android:id="@+id/phone_contact"
+        android:layout_below="@+id/headline_contact"
+        android:textColor="@color/colorText" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginLeft="15dp"
+        android:text="@string/fax_contact"
+        android:id="@+id/fax_contact"
+        android:layout_below="@+id/phone_contact"
+        android:textColor="@color/colorText" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginLeft="15dp"
+        android:text="@string/address_contact"
+        android:id="@+id/address_contact"
+        android:layout_below="@+id/fax_contact"
+        android:textColor="@color/colorText" />
 
 
+    <!-- Services -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginLeft="15dp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:text="@string/headline_services"
+        android:id="@+id/headline_services"
+        android:layout_below="@+id/address_contact"
+        android:textColor="@color/colorText" />
 
 
 
