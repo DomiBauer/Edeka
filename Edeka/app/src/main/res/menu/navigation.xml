@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_einkaufszettel"
+        android:icon="@drawable/ic_receipt_black_24dp"
+        android:title="@string/title_einkaufszettel" />
+
+    <item
+        android:id="@+id/navigation_produktsuche"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="@string/title_produktsuche" />
+
+    <item
+        android:id="@+id/navigation_angebote"
+        android:icon="@drawable/icon_angebote"
+        android:title="@string/title_angebote" />
+
+    <item
+        android:id="@+id/navigation_ueber_uns"
+        android:icon="@drawable/ic_store_mall_directory_black_24dp"
+        android:title="@string/title_ueber_uns" />
+
+</menu>

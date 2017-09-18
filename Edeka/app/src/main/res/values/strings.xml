@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Edeka</string>
+    <string name="title_einkaufszettel">Einkaufszettel</string>
+    <string name="title_produktsuche">Produktsuche</string>
+    <string name="title_angebote">Angebote</string>
+    <string name="title_ueber_uns">Über Uns</string>
+</resources>
