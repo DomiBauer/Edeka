@@ -4,4 +4,17 @@
     <string name="title_produktsuche">Produktsuche</string>
     <string name="title_angebote">Angebote</string>
     <string name="title_ueber_uns">Über uns</string>
+
+    <!--Strings for the About-Page-->
+
+    <!-- Store Title -->
+    <string name="headline_store">Ihr Lieblingsmarkt</string>
+    <string name="name_store">EDEKA Steinberger</string>
+
+    <!--Opening Hours -->
+    <string name="title_opening_hours">Öffnungszeiten</string>
+    <string name="title_opening_hours_mo_fr">Mo-Fr: 07:00 - 20:00 Uhr</string>
+    <string name="title_opening_hours_sa">Sa: 07:00 - 20:00 Uhr</string>
+
+
 </resources>

@@ -6,11 +6,66 @@
     <include layout="@layout/content_header"
         android:id="@+id/header_component"/>
 
+    <!--Store Name-->
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:textSize="14sp"
+        android:id="@+id/headline_store"
         android:layout_below="@+id/header_component"
-        android:text="Über uns"
-        android:textColor="#FFFFFF"/>
+        android:text="@string/headline_store"
+        android:textColor="@color/colorText" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginLeft="15dp"
+        android:textStyle="bold"
+        android:text="@string/name_store"
+        android:id="@+id/name_store"
+        android:layout_below="@+id/headline_store"
+        android:textColor="@color/colorText" />
+
+    <!-- Opening Hours -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginLeft="15dp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:text="@string/title_opening_hours"
+        android:id="@+id/title_opening_hours"
+        android:layout_below="@+id/name_store"
+        android:textColor="@color/colorText" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginLeft="15dp"
+        android:text="@string/title_opening_hours_mo_fr"
+        android:id="@+id/title_opening_hours_mo_fr"
+        android:layout_below="@+id/title_opening_hours"
+        android:textColor="@color/colorText" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginLeft="15dp"
+        android:text="@string/title_opening_hours_sa"
+        android:id="@+id/title_opening_hours_sa"
+        android:layout_below="@+id/title_opening_hours_mo_fr"
+        android:textColor="@color/colorText" />
+
+    <!-- Contact -->
+
+
+
+
 
 </RelativeLayout>
