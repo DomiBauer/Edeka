@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -51,28 +53,37 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openShoppingList () {
+        clearContent ();
         ViewGroup inclusionViewGroup = (ViewGroup)findViewById(R.id.content);
         View shoppingListContent = LayoutInflater.from(this).inflate(R.layout.content_shopping_list, null);
         inclusionViewGroup.addView(shoppingListContent);
     }
 
     public void productSearch () {
+        clearContent ();
         ViewGroup inclusionViewGroup = (ViewGroup)findViewById(R.id.content);
         View shoppingListContent = LayoutInflater.from(this).inflate(R.layout.content_product_search, null);
         inclusionViewGroup.addView(shoppingListContent);
     }
 
     public void openDiscount () {
+        clearContent ();
         ViewGroup inclusionViewGroup = (ViewGroup)findViewById(R.id.content);
         View shoppingListContent = LayoutInflater.from(this).inflate(R.layout.content_discount, null);
         inclusionViewGroup.addView(shoppingListContent);
     }
 
     public void openAbout () {
+        clearContent ();
         ViewGroup inclusionViewGroup = (ViewGroup)findViewById(R.id.content);
         View aboutContent = LayoutInflater.from(this).inflate(R.layout.content_about, null);
         inclusionViewGroup.addView(aboutContent);
 
+    }
+
+    public void clearContent () {
+        FrameLayout content = (FrameLayout) findViewById(R.id.content);
+        content.removeAllViews();
     }
 
 }
