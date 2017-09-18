@@ -12,9 +12,15 @@
     <string name="name_store">EDEKA Steinberger</string>
 
     <!--Opening Hours -->
-    <string name="title_opening_hours">Öffnungszeiten</string>
-    <string name="title_opening_hours_mo_fr">Mo-Fr: 07:00 - 20:00 Uhr</string>
+    <string name="headline_opening_hours">Öffnungszeiten</string>
+    <string name="opening_hours_mo_fr">Mo-Fr: 07:00 - 20:00 Uhr</string>
+    <string name="opening_hours_sa">Sa: 07:00 - 20:00 Uhr</string>
+
+    <!--Contact -->
+    <!--<string name="title">Sa: 07:00 - 20:00 Uhr</string>
     <string name="title_opening_hours_sa">Sa: 07:00 - 20:00 Uhr</string>
+    <string name="title_opening_hours_sa">Sa: 07:00 - 20:00 Uhr</string>
+    <string name="title_opening_hours_sa">Sa: 07:00 - 20:00 Uhr</string>-->
 
 
 </resources>
