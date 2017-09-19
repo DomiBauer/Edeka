@@ -11,6 +11,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/scrollView"
+        android:layout_marginTop="10dp"
         android:layout_below="@id/header_component">
 
     <RelativeLayout
@@ -25,7 +26,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
             android:textSize="12sp"
             android:id="@+id/headline_store"
@@ -244,10 +244,10 @@
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="200dp"
             android:layout_below="@+id/services_fourth_row"
             tools:context="com.example.dominikbauer.edeka.MapsActivity"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:layout_marginBottom="20dp" />
 
         <ImageView
