@@ -13,7 +13,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="2dp"
             android:background="#fcdb0f"
             android:layout_below="@id/header"/>
 </RelativeLayout>

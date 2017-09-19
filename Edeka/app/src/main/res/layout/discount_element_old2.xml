@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/product_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/test" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="Tafeltrauben „Sultana“"
+            android:textColor="#000000"
+            android:id="@+id/test1"
+            android:layout_toRightOf="@+id/product_image"
+            android:layout_alignParentTop="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:text="hell, kernlos, aus der Türkei, Kl. I, 1kg"
+            android:textColor="#000000"
+            android:id="@+id/test2"
+            android:layout_below="@+id/test1"
+            android:layout_toRightOf="@+id/product_image"
+            />
+
+        <!--<TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="2,99€"
+            android:textColor="@color/colorAccent"
+            android:id="@+id/test3"
+            android:layout_below="@+id/test2"
+            android:layout_toRightOf="@+id/product_image"
+            android:layout_alignParentRight="true"
+            />-->
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/product_price"
+            android:src="@drawable/produkt_tafeltrauben_sultana_preis"
+            android:layout_toRightOf="@+id/test1"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:text="Informationen"
+            android:textSize="8dp"
+            android:id="@+id/information_button"
+            android:layout_below="@+id/product_price"
+            android:layout_toRightOf="@+id/product_image"
+            android:background="@drawable/my_button_bg"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:text="Informationen"
+            android:textSize="8dp"
+            android:layout_below="@+id/information_button"
+            android:layout_toRightOf="@+id/product_image"
+            android:background="@drawable/my_button_bg"/>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent"
+            android:layout_below="@id/product_image"
+            android:layout_marginTop="20dp" />
+
+</RelativeLayout>
