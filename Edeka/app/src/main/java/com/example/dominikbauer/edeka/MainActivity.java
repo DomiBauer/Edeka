@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -13,11 +14,15 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -27,9 +32,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class MainActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    ListView listView ;
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -65,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         openShoppingList();
 
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
     }
 
     public void openShoppingList () {
@@ -87,6 +94,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         ViewGroup inclusionViewGroup = (ViewGroup)findViewById(R.id.content);
         View shoppingListContent = LayoutInflater.from(this).inflate(R.layout.content_discount, null);
         inclusionViewGroup.addView(shoppingListContent);
+
+        //populateProductList();
     }
 
     public void openAbout () {
@@ -102,6 +111,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     public void clearContent () {
         FrameLayout content = (FrameLayout) findViewById(R.id.content);
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.map);
+        if(fragment != null)
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
         content.removeAllViews();
     }
 
@@ -145,5 +157,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
             }
         });
+    }
+
+    private void populateProductList () {
     }
 }
