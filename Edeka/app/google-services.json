@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "775396759273",
+    "firebase_url": "https://edeka-ba165.firebaseio.com",
+    "project_id": "edeka-ba165",
+    "storage_bucket": "edeka-ba165.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:775396759273:android:361b9b04cadde418",
+        "android_client_info": {
+          "package_name": "com.example.dominikbauer.edeka"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "775396759273-rr4dksrhnrnjgijahsnuht3imt5ro2jo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dominikbauer.edeka",
+            "certificate_hash": "9e9751fa3d105be82a0b6f97b9e0c24717858312"
+          }
+        },
+        {
+          "client_id": "775396759273-ous2shjr93jtf6sie255ipg4guagvpc3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBt97zxwGGiqRIhop7LcLxjYZTs_fUdzzw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "775396759273-ous2shjr93jtf6sie255ipg4guagvpc3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

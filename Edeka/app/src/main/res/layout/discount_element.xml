@@ -43,7 +43,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:layout_marginLeft="10dp"
             android:text="hell, kernlos, aus der Türkei, Kl. I, 1kg"
             android:textColor="#000000"
@@ -51,19 +51,22 @@
             android:layout_below="@+id/product_headline" />
 
         <Button
-            android:layout_width="120dp"
-            android:layout_height="50dp"
-            android:textSize="10dp"
-            android:text="+ Einkaufszettel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/discount_add_to_shopping_list"
-            android:textColor="@color/colorPrimaryDark"
-            android:layout_marginLeft="10dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/my_button_bg"/>
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:padding="10dp"
+            android:drawablePadding="5dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="Auf Einkaufsliste"
+            android:textColor="@color/colorText"
+            android:drawableLeft="@drawable/add_to_shopping_list_button"/>
 
-        <RelativeLayout
+        <!--<RelativeLayout
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
@@ -100,8 +103,29 @@
                 android:textColor="@android:color/black"
                 android:text=".11"/>
 
-        </RelativeLayout>
+        </RelativeLayout>-->
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="5dp"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/product_old_price"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginRight="10dp"
+            android:layout_below="@+id/product_old_price"
+            android:id="@+id/product_price"/>
     </RelativeLayout>
 </LinearLayout>
     <View

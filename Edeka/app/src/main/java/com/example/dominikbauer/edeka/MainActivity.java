@@ -2,6 +2,7 @@ package com.example.dominikbauer.edeka;
 
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -36,11 +38,17 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    ListView listView ;
+    private static final String TAG = MainActivity.class.getSimpleName();
+    private DatabaseReference mDatabase;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -78,6 +86,9 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         openShoppingList();
 
         //getSupportActionBar().hide();
+
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
     public void openShoppingList () {
@@ -100,6 +111,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         View shoppingListContent = LayoutInflater.from(this).inflate(R.layout.content_discount, null);
         inclusionViewGroup.addView(shoppingListContent);
 
+        getDataFromDatabase();
         populateProductList();
     }
 
@@ -164,6 +176,21 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         });
     }
 
+    private void getDataFromDatabase() {
+                mDatabase.child("Products").child("1").child("Productname").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        String value = dataSnapshot.getValue(String.class);
+                        Toast.makeText(getApplicationContext(),
+                                value,
+                                Toast.LENGTH_LONG).show();
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
+    }
+
     private void populateProductList () {
         for (int i = 0; i < 20; i++) {
             LinearLayout myListView = (LinearLayout) findViewById(R.id.discount_product_list);
@@ -190,13 +217,18 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             TextView productDescription = (TextView) test.findViewById(R.id.product_description);
             productDescription.setText("Productdescription " + i);
 
-            TextView priceFirstDigit = (TextView) test.findViewById(R.id.price_first_digit);
-            String strI = Integer.toString(i+3);
-            priceFirstDigit.setText(strI);
+            TextView oldPriceProduct = (TextView) test.findViewById(R.id.product_old_price);
+            String oldPriceProductString = Double.toString(3.99);
+            oldPriceProduct.setText(oldPriceProductString + "€");
+            oldPriceProduct.setPaintFlags(oldPriceProduct.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
-            TextView priceSecondDigit = (TextView) test.findViewById(R.id.price_second_digit);
+            TextView priceProduct = (TextView) test.findViewById(R.id.product_price);
+            String priceProductString = Double.toString(2.99);
+            priceProduct.setText(priceProductString  + "€");
+
+            /*TextView priceSecondDigit = (TextView) test.findViewById(R.id.price_second_digit);
             String strI2 = Integer.toString(i+3);
-            productHeadline.setText("." + strI2);
+            productHeadline.setText("." + strI2);*/
 
             final Button addToShoppingList = (Button) test.findViewById(R.id.discount_add_to_shopping_list);
             addToShoppingList.setTag("Button"+i);
