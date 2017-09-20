@@ -2,12 +2,15 @@ package com.example.dominikbauer.edeka;
 
 
 import android.content.Intent;
+import android.media.Image;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -16,10 +19,12 @@ import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -95,7 +100,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         View shoppingListContent = LayoutInflater.from(this).inflate(R.layout.content_discount, null);
         inclusionViewGroup.addView(shoppingListContent);
 
-        //populateProductList();
+        populateProductList();
     }
 
     public void openAbout () {
@@ -160,5 +165,57 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void populateProductList () {
+        for (int i = 0; i < 20; i++) {
+            LinearLayout myListView = (LinearLayout) findViewById(R.id.discount_product_list);
+            View test = LayoutInflater.from(this).inflate(R.layout.discount_element, null);
+
+            ImageView productImage = (ImageView) test.findViewById(R.id.product_image);
+            if(i == 1) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    productImage.setImageDrawable(getResources().getDrawable(R.drawable.produkt_tafeltrauben_sultana_image, getApplicationContext().getTheme()));
+                } else {
+                    productImage.setImageDrawable(getResources().getDrawable(R.drawable.produkt_tafeltrauben_sultana_image));
+                }
+            } else {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    productImage.setImageDrawable(getResources().getDrawable(R.drawable.test, getApplicationContext().getTheme()));
+                } else {
+                    productImage.setImageDrawable(getResources().getDrawable(R.drawable.test));
+                }
+            }
+
+            TextView productHeadline = (TextView) test.findViewById(R.id.product_headline);
+            productHeadline.setText("Product " + i);
+
+            TextView productDescription = (TextView) test.findViewById(R.id.product_description);
+            productDescription.setText("Productdescription " + i);
+
+            TextView priceFirstDigit = (TextView) test.findViewById(R.id.price_first_digit);
+            String strI = Integer.toString(i+3);
+            priceFirstDigit.setText(strI);
+
+            TextView priceSecondDigit = (TextView) test.findViewById(R.id.price_second_digit);
+            String strI2 = Integer.toString(i+3);
+            productHeadline.setText("." + strI2);
+
+            final Button addToShoppingList = (Button) test.findViewById(R.id.discount_add_to_shopping_list);
+            addToShoppingList.setTag("Button"+i);
+
+            final int index = i;
+
+            addToShoppingList.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+
+                    Log.i("TAG", "index :" + index);
+
+                    Toast.makeText(getApplicationContext(),
+                            "Clicked Button Index :" + addToShoppingList.getTag(),
+                            Toast.LENGTH_LONG).show();
+
+                }
+            });
+
+            myListView.addView(test);
+        }
     }
 }

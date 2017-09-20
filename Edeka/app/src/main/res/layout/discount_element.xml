@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@android:color/white">
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@android:color/white">
 
 
     <ImageView
@@ -50,7 +55,7 @@
             android:layout_height="50dp"
             android:textSize="10dp"
             android:text="+ Einkaufszettel"
-            android:id="@+id/test3"
+            android:id="@+id/discount_add_to_shopping_list"
             android:textColor="@color/colorPrimaryDark"
             android:layout_marginLeft="10dp"
             android:layout_alignParentBottom="true"
@@ -97,7 +102,11 @@
 
         </RelativeLayout>
 
-
     </RelativeLayout>
-
+</LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@android:color/transparent"
+        android:layout_below="@id/product_image" />
 </LinearLayout>
