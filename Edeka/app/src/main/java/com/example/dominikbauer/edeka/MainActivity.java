@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewManager;
 import android.view.ViewStub;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -55,7 +56,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
 
 
-    public Product [] productArray = new Product[10];
+    public Product [] productArray = new Product[15];
     public Product product0;
     public Product product1;
     public Product product2;
@@ -182,17 +183,17 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         productArray [9] = product9;
 
 
-        /*//Usual Products
+        //Usual Products
         product10 = new Product(10, "Hochland Käse-Ecken", "Inhalt: 200 g", 2.29, 0.00, "hochland_kaese_ecken", false, false);
-        productArray [10] = product0;
+        productArray [10] = product10;
         product11 = new Product(11, "EDEKA Bio Roggen Vollkornbrot", "Inhalt: 500 g", 1.39, 0.00, "edeka_bio_roggen_vollkornbrot", false, false);
-        productArray [11] = product1;
+        productArray [11] = product11;
         product12 = new Product(12, "Nutella Nuss-Nougat-Creme groß", "Inhalt: 750 g", 3.89, 0.00, "nutella_nuss_nougat_creme_gross", false, false);
-        productArray [12] = product2;
+        productArray [12] = product12;
         product13 = new Product(13, "Knorr Fix für Spaghetti Bolognese", "Inhalt: 42 g", 0.89, 0.00, "knorr_fix_fuer_spaghetti_bolognese", false, false);
-        productArray [13] = product3;
+        productArray [13] = product13;
         product14 = new Product(14, "Knorr Knoblauch Grillsauce", "Inhalt: 250 ml", 1.29, 0.00, "knorr_knoblauch_grillsauce", false, false);
-        productArray [14] = product4;*/
+        productArray [14] = product14;
     }
 
     public void onMapReady(GoogleMap googleMap) {
@@ -266,12 +267,26 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             TextView productDescription = (TextView) myView.findViewById(R.id.product_description);
             productDescription.setText(productArray[i].productDescription);
 
-            TextView priceProduct = (TextView) myView.findViewById(R.id.product_old_price);
-            priceProduct.setText(String.valueOf(productArray[i].originalPrice + "€"));
-            priceProduct.setPaintFlags(priceProduct.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            if (productArray[i].discountPrice == 0.00) {
+                TextView productPrice = (TextView) myView.findViewById(R.id.product_price);
+                productPrice.setText(String.valueOf(productArray[i].originalPrice) + "€");
 
-            TextView priceDiscountProduct = (TextView) myView.findViewById(R.id.product_price);
-            priceDiscountProduct.setText(String.valueOf(productArray[i].discountPrice) + "€");
+                TextView oldProductPrice = (TextView) myView.findViewById(R.id.product_price);
+                myListView.removeView(oldProductPrice);
+
+                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)productPrice.getLayoutParams();
+                params.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+
+                productPrice.setLayoutParams(params);
+
+            } else {
+                TextView oldProductPrice = (TextView) myView.findViewById(R.id.product_old_price);
+                oldProductPrice.setText(String.valueOf(productArray[i].originalPrice + "€"));
+                oldProductPrice.setPaintFlags(oldProductPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                TextView productPrice = (TextView) myView.findViewById(R.id.product_price);
+                productPrice.setText(String.valueOf(productArray[i].discountPrice) + "€");
+            }
 
             final Button addToShoppingList = (Button) myView.findViewById(R.id.discount_add_to_shopping_list);
             addToShoppingList.setTag(productArray[i].id);
