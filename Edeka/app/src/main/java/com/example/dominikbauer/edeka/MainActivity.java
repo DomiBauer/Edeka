@@ -1,6 +1,7 @@
 package com.example.dominikbauer.edeka;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.media.Image;
@@ -44,11 +45,37 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import com.example.dominikbauer.edeka.Product;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private static final String TAG = MainActivity.class.getSimpleName();
-    private DatabaseReference mDatabase;
+
+
+    public Product [] productArray = new Product[5];
+    public Product product0;
+    public Product product1;
+    public Product product2;
+    public Product product3;
+    public Product product4;
+    public Product product5;
+    public Product product6;
+    public Product product7;
+    public Product product8;
+    public Product product9;
+    public Product product10;
+    public Product product11;
+    public Product product12;
+    public Product product13;
+    public Product product14;
+    public Product product15;
+    public Product product16;
+    public Product product17;
+    public Product product18;
+    public Product product19;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -84,11 +111,9 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         openShoppingList();
+        createProducts();
 
         //getSupportActionBar().hide();
-
-
-        mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
     public void openShoppingList () {
@@ -111,8 +136,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         View shoppingListContent = LayoutInflater.from(this).inflate(R.layout.content_discount, null);
         inclusionViewGroup.addView(shoppingListContent);
 
-        getDataFromDatabase();
-        populateProductList();
+        addProductToDiscountView ();
     }
 
     public void openAbout () {
@@ -132,6 +156,19 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         if(fragment != null)
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
         content.removeAllViews();
+    }
+
+    public void createProducts () {
+        product0 = new Product(0, "Hochland Käse-Ecken", "Inhalt: 200 g", 2.29, 0.00, "hochland_kaese_ecken", false, false);
+        productArray [0] = product0;
+        product1 = new Product(1, "EDEKA Bio Roggen Vollkornbrot", "Inhalt: 500 g", 1.39, 0.00, "edeka_bio_roggen_vollkornbrot", false, false);
+        productArray [1] = product1;
+        product2 = new Product(2, "Nutella Nuss-Nougat-Creme groß", "Inhalt: 750 g", 3.89, 0.00, "nutella_nuss_nougat_creme_gross", false, false);
+        productArray [2] = product2;
+        product3 = new Product(3, "Knorr Fix für Spaghetti Bolognese", "Inhalt: 42 g", 0.89, 0.00, "knorr_fix_fuer_spaghetti_bolognese", false, false);
+        productArray [3] = product3;
+        product4 = new Product(4, "Knorr Knoblauch Grillsauce", "Inhalt: 250 ml", 1.29, 0.00, "knorr_knoblauch_grillsauce", false, false);
+        productArray [4] = product4;
     }
 
     public void onMapReady(GoogleMap googleMap) {
@@ -176,27 +213,56 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         });
     }
 
-    private void getDataFromDatabase() {
-                mDatabase.child("Products").child("1").child("Productname").addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        String value = dataSnapshot.getValue(String.class);
-                        Toast.makeText(getApplicationContext(),
-                                value,
-                                Toast.LENGTH_LONG).show();
-                    }
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                    }
-                });
+    private void addProductToDiscountView () {
+
+        for (int i = 0; i < productArray.length; i++) {
+            LinearLayout myListView = (LinearLayout) findViewById(R.id.discount_product_list);
+            View myView = LayoutInflater.from(this).inflate(R.layout.discount_element, null);
+
+            String imageURL = productArray[i].imgURL;
+            ImageView productImage = (ImageView) myView.findViewById(R.id.product_image);
+            Context context = productImage.getContext();
+            int id = context.getResources().getIdentifier(imageURL, "drawable", context.getPackageName());
+
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                productImage.setImageDrawable(getResources().getDrawable(id, getApplicationContext().getTheme()));
+            } else {
+                productImage.setImageDrawable(getResources().getDrawable(id));
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                productImage.setImageDrawable(getResources().getDrawable(id, getApplicationContext().getTheme()));
+            } else {
+                productImage.setImageDrawable(getResources().getDrawable(id));
+            }
+
+            TextView productHeadline = (TextView) myView.findViewById(R.id.product_headline);
+            productHeadline.setText(productArray[i].productName);
+
+            TextView productDescription = (TextView) myView.findViewById(R.id.product_description);
+            productDescription.setText(productArray[i].productDescription);
+
+            TextView priceProduct = (TextView) myView.findViewById(R.id.product_old_price);
+            priceProduct.setText(String.valueOf(productArray[i].originalPrice + "€"));
+            priceProduct.setPaintFlags(priceProduct.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+            TextView priceDiscountProduct = (TextView) myView.findViewById(R.id.product_price);
+            priceDiscountProduct.setText(String.valueOf(productArray[i].discountPrice) + "€");
+
+            final Button addToShoppingList = (Button) myView.findViewById(R.id.discount_add_to_shopping_list);
+            addToShoppingList.setTag(productArray[i].id);
+
+            myListView.addView(myView);
+        }
+
     }
 
     private void populateProductList () {
-        for (int i = 0; i < 20; i++) {
+        /*for (int i = 0; i < 5; i++) {
             LinearLayout myListView = (LinearLayout) findViewById(R.id.discount_product_list);
-            View test = LayoutInflater.from(this).inflate(R.layout.discount_element, null);
+            View myView = LayoutInflater.from(this).inflate(R.layout.discount_element, null);
 
-            ImageView productImage = (ImageView) test.findViewById(R.id.product_image);
+            ImageView productImage = (ImageView) myView.findViewById(R.id.product_image);
             if(i == 1) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     productImage.setImageDrawable(getResources().getDrawable(R.drawable.produkt_tafeltrauben_sultana_image, getApplicationContext().getTheme()));
@@ -211,26 +277,22 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
 
-            TextView productHeadline = (TextView) test.findViewById(R.id.product_headline);
-            productHeadline.setText("Product " + i);
+            /*TextView productHeadline = (TextView) myView.findViewById(R.id.product_headline);
+            productHeadline.setText("Product " + i);*/
 
-            TextView productDescription = (TextView) test.findViewById(R.id.product_description);
+            /*TextView productDescription = (TextView) myView.findViewById(R.id.product_description);
             productDescription.setText("Productdescription " + i);
 
-            TextView oldPriceProduct = (TextView) test.findViewById(R.id.product_old_price);
+            TextView oldPriceProduct = (TextView) myView.findViewById(R.id.product_old_price);
             String oldPriceProductString = Double.toString(3.99);
             oldPriceProduct.setText(oldPriceProductString + "€");
             oldPriceProduct.setPaintFlags(oldPriceProduct.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
-            TextView priceProduct = (TextView) test.findViewById(R.id.product_price);
+            /*TextView priceProduct = (TextView) myView.findViewById(R.id.product_price);
             String priceProductString = Double.toString(2.99);
             priceProduct.setText(priceProductString  + "€");
 
-            /*TextView priceSecondDigit = (TextView) test.findViewById(R.id.price_second_digit);
-            String strI2 = Integer.toString(i+3);
-            productHeadline.setText("." + strI2);*/
-
-            final Button addToShoppingList = (Button) test.findViewById(R.id.discount_add_to_shopping_list);
+            final Button addToShoppingList = (Button) myView.findViewById(R.id.discount_add_to_shopping_list);
             addToShoppingList.setTag("Button"+i);
 
             final int index = i;
@@ -247,7 +309,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             });
 
-            myListView.addView(test);
+            myListView.addView(myView);*/
         }
-    }
 }

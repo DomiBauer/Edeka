@@ -54,7 +54,6 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/product_price"
-            android:src="@drawable/produkt_tafeltrauben_sultana_preis"
             android:layout_toRightOf="@+id/test1"
             android:layout_alignParentRight="true"
             android:layout_gravity="right"
