@@ -55,7 +55,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
 
 
-    public Product [] productArray = new Product[5];
+    public Product [] productArray = new Product[10];
     public Product product0;
     public Product product1;
     public Product product2;
@@ -159,16 +159,40 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void createProducts () {
-        product0 = new Product(0, "Hochland Käse-Ecken", "Inhalt: 200 g", 2.29, 0.00, "hochland_kaese_ecken", false, false);
+        //Discount Prodcuts
+        product0 = new Product(0, "EDEKA Bananen", "1 kg", 2.29, 1.49, "edeka_bananen", true, false);
         productArray [0] = product0;
-        product1 = new Product(1, "EDEKA Bio Roggen Vollkornbrot", "Inhalt: 500 g", 1.39, 0.00, "edeka_bio_roggen_vollkornbrot", false, false);
+        product1 = new Product(1, "Frische Feigen", "aus der Türkei, Kl. I, Stück", 0.69, 0.39, "frische_feigen", true, false);
         productArray [1] = product1;
-        product2 = new Product(2, "Nutella Nuss-Nougat-Creme groß", "Inhalt: 750 g", 3.89, 0.00, "nutella_nuss_nougat_creme_gross", false, false);
+        product2 = new Product(2, "Berchtesgadener Land Joghurt-Drink", "je 400g Packung, (1kg=1.93)", 0.99, 0.77, "berchtesgadener_land_joghurt_drink", true, false);
         productArray [2] = product2;
-        product3 = new Product(3, "Knorr Fix für Spaghetti Bolognese", "Inhalt: 42 g", 0.89, 0.00, "knorr_fix_fuer_spaghetti_bolognese", false, false);
+        product3 = new Product(3, "Tabaluga Bio-Ketchup", "78% Tomatenmark, 500ml Flasche, (1l=2.98)", 1.89, 1.49, "tabaluga_bio_ketchup", true, false);
         productArray [3] = product3;
-        product4 = new Product(4, "Knorr Knoblauch Grillsauce", "Inhalt: 250 ml", 1.29, 0.00, "knorr_knoblauch_grillsauce", false, false);
+        product4 = new Product(4, "Kühne Ungarische Gurken", "Abtropfgewicht 360g, je 670g Glas, (1kg=2.75)", 1.59, 0.99, "kuehne_ungarische_gurken", true, false);
         productArray [4] = product4;
+        product5 = new Product(5, "Rockstar Energy Drink", "mit Taurin und Koffein, +0.25 Pfand, je 0,5l Dose, (1l=1.98)", 1.19, 0.99, "rockstar_energy_drink", true, false);
+        productArray [5] = product5;
+        product6 = new Product(6, "Löwenbräu Oktoberfestbier", "+3.10 Pfand, Träger 20x0,5l Flasche, (1l=1.10)", 11.49, 10.99, "loewenbraeu_oktoberfestbier", true, false);
+        productArray [6] = product6;
+        product7 = new Product(7, "Lorenz Crunchips - Paprika", "je 150-225g Beutel, (100g=0.66-0.44)", 1.49, 0.99, "lorenz_crunchips_paprika", true, false);
+        productArray [7] = product7;
+        product8 = new Product(8, "Teekanne Sanfte Kamille", "je 18/20er Packung", 1.59, 1.29, "teekanne_sanfte_kamille", true, false);
+        productArray [8] = product8;
+        product9 = new Product(9, "Odol-med3 Zahncreme - Original", "75ml Tube, (100ml=1.19)", 1.59, 0.89, "odol_med3_zahncreme", true, false);
+        productArray [9] = product9;
+
+
+        /*//Usual Products
+        product10 = new Product(10, "Hochland Käse-Ecken", "Inhalt: 200 g", 2.29, 0.00, "hochland_kaese_ecken", false, false);
+        productArray [10] = product0;
+        product11 = new Product(11, "EDEKA Bio Roggen Vollkornbrot", "Inhalt: 500 g", 1.39, 0.00, "edeka_bio_roggen_vollkornbrot", false, false);
+        productArray [11] = product1;
+        product12 = new Product(12, "Nutella Nuss-Nougat-Creme groß", "Inhalt: 750 g", 3.89, 0.00, "nutella_nuss_nougat_creme_gross", false, false);
+        productArray [12] = product2;
+        product13 = new Product(13, "Knorr Fix für Spaghetti Bolognese", "Inhalt: 42 g", 0.89, 0.00, "knorr_fix_fuer_spaghetti_bolognese", false, false);
+        productArray [13] = product3;
+        product14 = new Product(14, "Knorr Knoblauch Grillsauce", "Inhalt: 250 ml", 1.29, 0.00, "knorr_knoblauch_grillsauce", false, false);
+        productArray [14] = product4;*/
     }
 
     public void onMapReady(GoogleMap googleMap) {
