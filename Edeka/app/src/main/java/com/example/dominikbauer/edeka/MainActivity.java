@@ -9,12 +9,15 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,10 +29,12 @@ import android.widget.Toast;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.Projection;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -118,9 +123,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             Button startShoppingButton = (Button) findViewById(R.id.start_shopping_button);
             startShoppingButton.setVisibility(myView.GONE);
             myListView.addView(myView);
-
-
-            //layout.removeView(startShoppingButton);
         }
     }
 
@@ -201,17 +203,49 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     public void productSearch () {
         clearContent();
         shuffleArray ();
+        setUpSearchViewGrid();
+        drawProductSearch(productArray);
+
+        EditText searchBar = (EditText) findViewById(R.id.search_bar);
+        searchBar.addTextChangedListener(new TextWatcher() {
+
+            public void afterTextChanged(Editable s) {}
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String searchBarInput = s.toString();
+                LinearLayout ll = findViewById(R.id.product_search_list);
+                ll.removeAllViews();
+
+                List<Product> filteredList = new ArrayList<Product>();
+
+                for (int i = 0; i < productArray.length; i++) {
+                    if (productArray[i].productName.toLowerCase().contains(searchBarInput.toLowerCase())){
+                        filteredList.add(productArray[i]);
+                    }
+                }
+                Product [] newProductArray = new Product[filteredList.size()];
+                filteredList.toArray(newProductArray);
+                drawProductSearch(newProductArray);
+            }
+        });
+    }
+
+    public void setUpSearchViewGrid () {
         ViewGroup inclusionViewGroup = (ViewGroup) findViewById(R.id.content);
         View shoppingListContent = LayoutInflater.from(this).inflate(R.layout.content_product_search, null);
         inclusionViewGroup.addView(shoppingListContent);
+    }
 
-        for (int i = 0; i < productArray.length; i++) {
-            final int index = i;
+    public void drawProductSearch (Product[] Products) {
+        for (int j = 0; j < Products.length; j++) {
+            final int index = j;
             final View myView;
             LinearLayout myListView = (LinearLayout) findViewById(R.id.product_search_list);
             myView = LayoutInflater.from(this).inflate(R.layout.product_element, null);
 
-            String imageURL = productArray[index].imgURL;
+            String imageURL = Products[index].imgURL;
             ImageView productImage = (ImageView) myView.findViewById(R.id.product_image);
             Context context = productImage.getContext();
             int id = context.getResources().getIdentifier(imageURL, "drawable", context.getPackageName());
@@ -229,14 +263,14 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             }
 
             TextView productHeadline = (TextView) myView.findViewById(R.id.product_headline);
-            productHeadline.setText(productArray[i].productName);
+            productHeadline.setText(Products[index].productName);
 
             TextView productDescription = (TextView) myView.findViewById(R.id.product_description);
-            productDescription.setText(productArray[index].productDescription);
+            productDescription.setText(Products[index].productDescription);
 
-            if (productArray[i].discountPrice == 0.00) {
+            if (Products[index].discountPrice == 0.00) {
                 TextView productPrice = (TextView) myView.findViewById(R.id.product_price);
-                productPrice.setText(String.valueOf(productArray[index].originalPrice) + "€");
+                productPrice.setText(String.valueOf(Products[index].originalPrice) + "€");
 
                 TextView oldProductPrice = (TextView) myView.findViewById(R.id.product_price);
                 myListView.removeView(oldProductPrice);
@@ -248,15 +282,15 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
             } else {
                 TextView oldProductPrice = (TextView) myView.findViewById(R.id.product_old_price);
-                oldProductPrice.setText(String.valueOf(productArray[index].originalPrice + "€"));
+                oldProductPrice.setText(String.valueOf(Products[index].originalPrice + "€"));
                 oldProductPrice.setPaintFlags(oldProductPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
                 TextView productPrice = (TextView) myView.findViewById(R.id.product_price);
-                productPrice.setText(String.valueOf(productArray[index].discountPrice) + "€");
+                productPrice.setText(String.valueOf(Products[index].discountPrice) + "€");
             }
 
             final Button addToShoppingList = (Button) myView.findViewById(R.id.add_to_shopping_list);
-            addToShoppingList.setTag(productArray[index].id);
+            addToShoppingList.setTag(Products[index].id);
             setButtonColor (addToShoppingList, index);
             addToShoppingList.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -264,9 +298,9 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                     changeButtonColor(addButton, index);
                 }
             });
-
             myListView.addView(myView);
         }
+
     }
 
     public void shuffleArray (){

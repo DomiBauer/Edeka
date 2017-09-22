@@ -6,20 +6,24 @@
     <include layout="@layout/content_header"
         android:id="@+id/header_component"/>
 
-    <!--<searchable xmlns:android="http://schemas.android.com/apk/res/android"
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:label="testlabel"
-        android:hint="testhint"
+        android:hint="Produktname eingeben..."
+        android:drawableLeft="@drawable/icon_suche"
+        android:textColorHint="#9E9E9E"
+        android:theme="@style/Theme.App.Base"
+        android:layout_margin="10dp"
+        android:drawablePadding="5dp"
+        android:id="@+id/search_bar"
         android:layout_below="@id/header_component"
-        android:id="@+id/searchBar">
-    </searchable>-->
+        android:textColor="@color/colorText" />
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/scrollView"
-        android:layout_below="@id/header_component">
+        android:layout_below="@id/search_bar">
 
         <LinearLayout
             android:layout_width="match_parent"
