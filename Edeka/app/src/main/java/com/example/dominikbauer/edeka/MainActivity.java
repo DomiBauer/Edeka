@@ -30,6 +30,10 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public class MainActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -90,25 +94,93 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        openShoppingList();
         createProducts();
-
+        openShoppingList();
         //getSupportActionBar().hide();
     }
 
     public void openShoppingList () {
-        clearContent ();
-        ViewGroup inclusionViewGroup = (ViewGroup)findViewById(R.id.content);
+        clearContent();
+        ViewGroup inclusionViewGroup = (ViewGroup) findViewById(R.id.content);
 
-        /*View shoppingListContent = LayoutInflater.from(this).inflate(R.layout.content_shopping_list, null);
-        inclusionViewGroup.addView(shoppingListContent);*/
+        View shoppingListContent = LayoutInflater.from(this).inflate(R.layout.content_shopping_list, null);
+        inclusionViewGroup.addView(shoppingListContent);
 
-        //Intent intent = new Intent(this, MapActivity.class);
-        //startActivity(intent);
+        for (int i = 0; i < productArray.length; i++) {
+            if (productArray[i].onShoppingList == true) {
+                drawShoppingList (i);
+            }
+        }
+    }
+
+    public void drawShoppingList (int i) {
+        final View myView;
+        final int index = i;
+
+        LinearLayout myListView = (LinearLayout) findViewById(R.id.shopping_list);
+        myView = LayoutInflater.from(this).inflate(R.layout.product_element, null);
+
+        String imageURL = productArray[index].imgURL;
+        ImageView productImage = (ImageView) myView.findViewById(R.id.product_image);
+        Context context = productImage.getContext();
+        int id = context.getResources().getIdentifier(imageURL, "drawable", context.getPackageName());
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            productImage.setImageDrawable(getResources().getDrawable(id, getApplicationContext().getTheme()));
+        } else {
+            productImage.setImageDrawable(getResources().getDrawable(id));
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            productImage.setImageDrawable(getResources().getDrawable(id, getApplicationContext().getTheme()));
+        } else {
+            productImage.setImageDrawable(getResources().getDrawable(id));
+        }
+
+        TextView productHeadline = (TextView) myView.findViewById(R.id.product_headline);
+        productHeadline.setText(productArray[i].productName);
+
+        TextView productDescription = (TextView) myView.findViewById(R.id.product_description);
+        productDescription.setText(productArray[index].productDescription);
+
+        if (productArray[i].discountPrice == 0.00) {
+            TextView productPrice = (TextView) myView.findViewById(R.id.product_price);
+            productPrice.setText(String.valueOf(productArray[index].originalPrice) + "€");
+
+            TextView oldProductPrice = (TextView) myView.findViewById(R.id.product_price);
+            myListView.removeView(oldProductPrice);
+
+            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) productPrice.getLayoutParams();
+            params.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+
+            productPrice.setLayoutParams(params);
+
+        } else {
+            TextView oldProductPrice = (TextView) myView.findViewById(R.id.product_old_price);
+            oldProductPrice.setText(String.valueOf(productArray[index].originalPrice + "€"));
+            oldProductPrice.setPaintFlags(oldProductPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+            TextView productPrice = (TextView) myView.findViewById(R.id.product_price);
+            productPrice.setText(String.valueOf(productArray[index].discountPrice) + "€");
+        }
+
+        final Button addToShoppingList = (Button) myView.findViewById(R.id.add_to_shopping_list);
+        addToShoppingList.setTag(productArray[index].id);
+        setButtonColor(addToShoppingList, index);
+        addToShoppingList.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Button addButton = myView.findViewWithTag(v.getTag());
+                changeButtonColor(addButton, index);
+                openShoppingList();
+            }
+        });
+
+        myListView.addView(myView);
     }
 
     public void productSearch () {
         clearContent();
+        shuffleArray ();
         ViewGroup inclusionViewGroup = (ViewGroup) findViewById(R.id.content);
         View shoppingListContent = LayoutInflater.from(this).inflate(R.layout.content_product_search, null);
         inclusionViewGroup.addView(shoppingListContent);
@@ -172,10 +244,15 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                     changeButtonColor(addButton, index);
                 }
             });
-            myListView.addView(myView);
 
             myListView.addView(myView);
         }
+    }
+
+    public void shuffleArray (){
+        List<Product> list = Arrays.asList(productArray);
+        Collections.shuffle(list);
+        list.toArray(productArray);
     }
 
     public void openDiscount () {
