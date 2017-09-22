@@ -6,6 +6,15 @@
     <include layout="@layout/content_header"
         android:id="@+id/header_component"/>
 
+    <!--<searchable xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:label="testlabel"
+        android:hint="testhint"
+        android:layout_below="@id/header_component"
+        android:id="@+id/searchBar">
+    </searchable>-->
+
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
