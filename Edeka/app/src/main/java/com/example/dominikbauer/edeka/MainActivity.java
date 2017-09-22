@@ -2,6 +2,7 @@ package com.example.dominikbauer.edeka;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Build;
 import android.os.Bundle;
@@ -124,6 +125,28 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             startShoppingButton.setVisibility(myView.GONE);
             myListView.addView(myView);
         }
+
+        Button startShoppingButton = (Button) findViewById(R.id.start_shopping_button);
+        startShoppingButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                List<Product> list = new ArrayList<Product>();
+
+                for (int i = 0; i < productArray.length; i++) {
+                    if (productArray[i].onShoppingList == true) {
+                        list.add(productArray[i]);
+                    }
+                }
+
+                Product [] shoppingList = new Product[list.size()];
+                list.toArray(shoppingList);
+
+                Intent intent = new Intent(MainActivity.this, ShoppingActivity.class);
+                intent.putExtra ("ShoppingListSize", shoppingList.length);
+                intent.putExtra ("ShoppingList", shoppingList);
+                startActivity(intent);
+            }
+        });
+
     }
 
     public boolean checkIfShoppingListIsEmpty () {
@@ -290,17 +313,27 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             }
 
             final Button addToShoppingList = (Button) myView.findViewById(R.id.add_to_shopping_list);
-            addToShoppingList.setTag(Products[index].id);
+            addToShoppingList.setTag(getProductId(Products[index].productName));
             setButtonColor (addToShoppingList, index);
             addToShoppingList.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     Button addButton = myView.findViewWithTag(v.getTag());
-                    changeButtonColor(addButton, index);
+                    TextView productHeadline = (TextView) myView.findViewById(R.id.product_headline);
+                    String productName = productHeadline.getText().toString();
+                    changeButtonColor(addButton, getProductId(productName));
                 }
             });
             myListView.addView(myView);
         }
+    }
 
+    public int getProductId (String ProductName) {
+        for (int i = 0; i < productArray.length; i++) {
+            if (productArray[i].productName.equals(ProductName)) {
+                return i;
+            }
+        }
+        return 1000;
     }
 
     public void shuffleArray (){
@@ -339,38 +372,38 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void createProducts () {
         //Discount Prodcuts
-        product0 = new Product(0, "EDEKA Bananen", "1 kg", 2.29, 1.49, "edeka_bananen", true, false);
+        product0 = new Product(0, "EDEKA Bananen", "1 kg", 2.29, 1.49, "edeka_bananen", true, false, 1);
         productArray [0] = product0;
-        product1 = new Product(1, "Frische Feigen", "aus der Türkei, Kl. I, Stück", 0.69, 0.39, "frische_feigen", true, false);
+        product1 = new Product(1, "Frische Feigen", "aus der Türkei, Kl. I, Stück", 0.69, 0.39, "frische_feigen", true, false, 1);
         productArray [1] = product1;
-        product2 = new Product(2, "Berchtesgadener Land Joghurt-Drink", "je 400g Packung", 0.99, 0.77, "berchtesgadener_land_joghurt_drink", true, false);
+        product2 = new Product(2, "Berchtesgadener Land Joghurt-Drink", "je 400g Packung", 0.99, 0.77, "berchtesgadener_land_joghurt_drink", true, false, 1);
         productArray [2] = product2;
-        product3 = new Product(3, "Tabaluga Bio-Ketchup", "78% Tomatenmark, 500ml Flasche", 1.89, 1.49, "tabaluga_bio_ketchup", true, false);
+        product3 = new Product(3, "Tabaluga Bio-Ketchup", "78% Tomatenmark, 500ml Flasche", 1.89, 1.49, "tabaluga_bio_ketchup", true, false, 1);
         productArray [3] = product3;
-        product4 = new Product(4, "Kühne Ungarische Gurken", "Abtropfgewicht 360g, je 670g Glas", 1.59, 0.99, "kuehne_ungarische_gurken", true, false);
+        product4 = new Product(4, "Kühne Ungarische Gurken", "Abtropfgewicht 360g, je 670g Glas", 1.59, 0.99, "kuehne_ungarische_gurken", true, false, 1);
         productArray [4] = product4;
-        product5 = new Product(5, "Rockstar Energy Drink", "mit Taurin und Koffein, +0.25 Pfand, je 0,5l Dose, (1l=1.98)", 1.19, 0.99, "rockstar_energy_drink", true, false);
+        product5 = new Product(5, "Rockstar Energy Drink", "mit Taurin und Koffein, +0.25 Pfand, je 0,5l Dose, (1l=1.98)", 1.19, 0.99, "rockstar_energy_drink", true, false, 1);
         productArray [5] = product5;
-        product6 = new Product(6, "Löwenbräu Oktoberfestbier", "+3.10 Pfand, Träger 20x0,5l Flasche", 11.49, 10.99, "loewenbraeu_oktoberfestbier", true, false);
+        product6 = new Product(6, "Löwenbräu Oktoberfestbier", "+3.10 Pfand, Träger 20x0,5l Flasche", 11.49, 10.99, "loewenbraeu_oktoberfestbier", true, false, 1);
         productArray [6] = product6;
-        product7 = new Product(7, "Lorenz Crunchips - Paprika", "je 150-225g Beutel", 1.49, 0.99, "lorenz_crunchips_paprika", true, false);
+        product7 = new Product(7, "Lorenz Crunchips - Paprika", "je 150-225g Beutel", 1.49, 0.99, "lorenz_crunchips_paprika", true, false, 1);
         productArray [7] = product7;
-        product8 = new Product(8, "Teekanne Sanfte Kamille", "je 18/20er Packung", 1.59, 1.29, "teekanne_sanfte_kamille", true, false);
+        product8 = new Product(8, "Teekanne Sanfte Kamille", "je 18/20er Packung", 1.59, 1.29, "teekanne_sanfte_kamille", true, false, 1);
         productArray [8] = product8;
-        product9 = new Product(9, "Odol-med3 Zahncreme", "75ml Tube", 1.59, 0.89, "odol_med3_zahncreme", true, false);
+        product9 = new Product(9, "Odol-med3 Zahncreme", "75ml Tube", 1.59, 0.89, "odol_med3_zahncreme", true, false, 1);
         productArray [9] = product9;
 
 
         //Usual Products
-        product10 = new Product(10, "Hochland Käse-Ecken", "Inhalt: 200 g", 2.29, 0.00, "hochland_kaese_ecken", false, false);
+        product10 = new Product(10, "Hochland Käse-Ecken", "Inhalt: 200 g", 2.29, 0.00, "hochland_kaese_ecken", false, false, 1);
         productArray [10] = product10;
-        product11 = new Product(11, "EDEKA Bio Roggen Vollkornbrot", "Inhalt: 500 g", 1.39, 0.00, "edeka_bio_roggen_vollkornbrot", false, false);
+        product11 = new Product(11, "EDEKA Bio Roggen Vollkornbrot", "Inhalt: 500 g", 1.39, 0.00, "edeka_bio_roggen_vollkornbrot", false, false, 1);
         productArray [11] = product11;
-        product12 = new Product(12, "Nutella Nuss-Nougat-Creme", "Inhalt: 750 g", 3.89, 0.00, "nutella_nuss_nougat_creme_gross", false, false);
+        product12 = new Product(12, "Nutella Nuss-Nougat-Creme", "Inhalt: 750 g", 3.89, 0.00, "nutella_nuss_nougat_creme_gross", false, false, 1);
         productArray [12] = product12;
-        product13 = new Product(13, "Knorr Fix für Spaghetti Bolognese", "Inhalt: 42 g", 0.89, 0.00, "knorr_fix_fuer_spaghetti_bolognese", false, false);
+        product13 = new Product(13, "Knorr Fix für Spaghetti Bolognese", "Inhalt: 42 g", 0.89, 0.00, "knorr_fix_fuer_spaghetti_bolognese", false, false, 1);
         productArray [13] = product13;
-        product14 = new Product(14, "Knorr Knoblauch Grillsauce", "Inhalt: 250 ml", 1.29, 0.00, "knorr_knoblauch_grillsauce", false, false);
+        product14 = new Product(14, "Knorr Knoblauch Grillsauce", "Inhalt: 250 ml", 1.29, 0.00, "knorr_knoblauch_grillsauce", false, false, 1);
         productArray [14] = product14;
     }
 
