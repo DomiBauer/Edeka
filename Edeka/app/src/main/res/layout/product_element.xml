@@ -96,7 +96,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/discount_add_to_shopping_list"
+            android:id="@+id/add_to_shopping_list"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_marginBottom="5dp"

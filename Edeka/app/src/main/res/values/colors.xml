@@ -6,5 +6,6 @@
     <color name="colorText">#ffffff</color>
 
     <color name="black_overlay">#66000000</color>
+    <color name="remove_button_color">#E53935</color>
 </resources>
 
