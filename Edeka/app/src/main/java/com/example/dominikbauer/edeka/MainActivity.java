@@ -314,7 +314,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
             final Button addToShoppingList = (Button) myView.findViewById(R.id.add_to_shopping_list);
             addToShoppingList.setTag(getProductId(Products[index].productName));
-            setButtonColor (addToShoppingList, index);
+            setButtonColor (addToShoppingList, getProductId(productHeadline.getText().toString()));
             addToShoppingList.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     Button addButton = myView.findViewWithTag(v.getTag());
