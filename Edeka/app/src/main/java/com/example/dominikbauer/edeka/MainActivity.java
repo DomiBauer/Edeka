@@ -130,8 +130,18 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         } else {
             LinearLayout myListView = (LinearLayout) findViewById(R.id.shopping_list);
             View myView = LayoutInflater.from(this).inflate(R.layout.empty_shopping_list, null);
+
             Button startShoppingButton = (Button) findViewById(R.id.start_shopping_button);
             startShoppingButton.setVisibility(myView.GONE);
+
+            Button addItemsToShoppingList = (Button) myView.findViewById(R.id.add_products);
+            addItemsToShoppingList.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    productSearch();
+                    BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
+                    bottomNavigationView.setSelectedItemId(R.id.navigation_produktsuche);
+                }
+            });
             myListView.addView(myView);
         }
 
