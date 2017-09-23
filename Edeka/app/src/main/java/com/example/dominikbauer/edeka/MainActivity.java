@@ -296,11 +296,11 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             } else {
                 productImage.setImageDrawable(getResources().getDrawable(id));
             }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 productImage.setImageDrawable(getResources().getDrawable(id, getApplicationContext().getTheme()));
             } else {
                 productImage.setImageDrawable(getResources().getDrawable(id));
-            }
+            }*/
 
             TextView productHeadline = (TextView) myView.findViewById(R.id.product_headline);
             productHeadline.setText(Products[index].productName);
