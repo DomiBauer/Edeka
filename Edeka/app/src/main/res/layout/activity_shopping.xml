@@ -13,7 +13,6 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginBottom="10dp"
         android:text="Zur Kasse gehen"
         android:textSize="16dp"
         android:textColor="@color/colorText"
@@ -50,7 +49,7 @@
         android:gravity="center"
         android:text="Summe (1 Artikel): 12.99€"
         android:textColor="@color/colorText"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:id="@+id/current_shopping_cart_value"/>
 
 

@@ -111,8 +111,7 @@ public class ShoppingActivity extends FragmentActivity {
         Button goToPayButton = (Button) findViewById(R.id.go_to_pay_button);
         goToPayButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(ShoppingActivity.this, PayActivity.class);
-                startActivity(intent);
+                startPayActivity();
             }
         });
 
@@ -124,11 +123,25 @@ public class ShoppingActivity extends FragmentActivity {
             }
         });
 
-
         //setUpMapCall(index, myView);
 
         myListView.addView(myView);
         setCurrentShoppingCartValue();
+    }
+
+    private void startPayActivity () {
+        ArrayList<Product> productList = new ArrayList<Product>();
+
+        for (int i = 0; i < productArray.length; i++) {
+            if (productArray[i].inShoppingCart == true) {
+                productList.add(productArray[i]);
+            }
+        }
+
+        Intent intent = new Intent(ShoppingActivity.this, PayActivity.class);
+        intent.putExtra ("ShoppingList", productList);
+        startActivity(intent);
+
     }
 
     private void setUpMapCall (int i, View currentView) {

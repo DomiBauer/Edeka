@@ -7,26 +7,6 @@
     <include layout="@layout/content_header"
         android:id="@+id/header_component"/>
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:id="@+id/scrollView"
-        android:layout_below="@id/header_component">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:id="@+id/to_pay_products"
-            android:orientation="vertical">
-
-        </LinearLayout>
-
-    </ScrollView>
-
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,7 +19,39 @@
         android:textColor="@color/colorText"
         android:background="@color/colorPrimaryDark"
         android:id="@+id/pay_button"
-        android:layout_below="@id/scrollView"/>
+        android:layout_below="@id/header_component"/>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/scrollView"
+        android:layout_below="@id/pay_button">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:id="@+id/to_pay_products"
+            android:orientation="vertical"
+            android:background="@color/colorText">
+
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimaryDark"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Summe (1 Artikel): 12.99€"
+        android:textColor="@color/colorText"
+        android:textSize="18sp"
+        android:id="@+id/current_shopping_cart_value"/>
 
 </RelativeLayout>
 

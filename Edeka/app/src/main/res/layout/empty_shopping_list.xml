@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Aktuell befinden sich noch keine Elemente auf Ihrer Einkaufsliste..."
-        android:textSize="18dp"
+        android:textSize="20dp"
         android:textColor="@color/colorText"
         android:gravity="center"
         android:layout_marginTop="120dp"/>
