@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -21,7 +22,7 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class PayActivity extends AppCompatActivity {
+public class PayActivity extends FragmentActivity {
 
     Product [] productArray;
     double shoppingCartValue;
@@ -41,7 +42,7 @@ public class PayActivity extends AppCompatActivity {
         productList.toArray(productArray);
 
         addProductsToView();
-        setCurrentShoppingCartValue(); 
+        setCurrentShoppingCartValue();
     }
 
     private void setView () {
@@ -87,7 +88,7 @@ public class PayActivity extends AppCompatActivity {
             Button goToPayButton = (Button) findViewById(R.id.pay_button);
             goToPayButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Intent intent = new Intent(PayActivity.this, MainActivity.class);
+                    Intent intent = new Intent(PayActivity.this, QRActivity.class);
                     startActivity(intent);
                 }
             });
