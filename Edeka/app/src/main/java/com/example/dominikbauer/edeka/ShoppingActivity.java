@@ -1,10 +1,13 @@
 package com.example.dominikbauer.edeka;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Build;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -111,7 +114,12 @@ public class ShoppingActivity extends FragmentActivity {
         Button goToPayButton = (Button) findViewById(R.id.go_to_pay_button);
         goToPayButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startPayActivity();
+                if (!checkIfShoppingCartIsEmpty()) {
+                    startPayActivity();
+                } else {
+                    buildAlert();
+                }
+
             }
         });
 
@@ -144,6 +152,26 @@ public class ShoppingActivity extends FragmentActivity {
         intent.putExtra ("Amount", numberOfProductsInShoppingCart);
         startActivity(intent);
 
+    }
+
+    public boolean checkIfShoppingCartIsEmpty () {
+        for (int i = 0; i < productArray.length; i++) {
+            if (productArray[i].inShoppingCart == true) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void buildAlert () {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Es muss mindestens ein Produkt zum Einkaufswagen hinzugefügt werden.")
+                .setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {}
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
     private void setUpMapCall (int i, View currentView) {
