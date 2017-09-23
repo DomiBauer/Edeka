@@ -140,6 +140,8 @@ public class ShoppingActivity extends FragmentActivity {
 
         Intent intent = new Intent(ShoppingActivity.this, PayActivity.class);
         intent.putExtra ("ShoppingList", productList);
+        intent.putExtra ("Price", shoppingCartValue);
+        intent.putExtra ("Amount", numberOfProductsInShoppingCart);
         startActivity(intent);
 
     }
@@ -183,7 +185,6 @@ public class ShoppingActivity extends FragmentActivity {
         } else {
             TextShoppingCartValue.setText("Summe: (" + numberOfProductsInShoppingCart + " Artikel: " + df.format(shoppingCartValue) + "€)");
         }
-
     }
 
     private void setButtonColor (Button addToShoppingCart, int index) {

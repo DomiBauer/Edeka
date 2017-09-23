@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.4"
             android:textSize="14sp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="10dp"
             android:text="Testproduc gferf"
             android:id="@+id/product_name"
             />

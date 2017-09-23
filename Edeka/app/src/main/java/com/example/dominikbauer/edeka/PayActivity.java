@@ -18,11 +18,14 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class PayActivity extends AppCompatActivity {
 
     Product [] productArray;
+    double shoppingCartValue;
+    int numberOfProductsInShoppingCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +34,14 @@ public class PayActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         ArrayList<Product> productList =  bundle.getParcelableArrayList("ShoppingList");
+        shoppingCartValue = bundle.getDouble("Price");
+        numberOfProductsInShoppingCart = bundle.getInt("Amount");
 
         productArray = new Product[productList.size()];
         productList.toArray(productArray);
 
         addProductsToView();
+        setCurrentShoppingCartValue(); 
     }
 
     private void setView () {
@@ -78,7 +84,7 @@ public class PayActivity extends AppCompatActivity {
                 productPrice.setText(String.valueOf(productArray[index].discountPrice) + "€");
             }
 
-            Button goToPayButton = (Button) myView.findViewById(R.id.pay_button);
+            Button goToPayButton = (Button) findViewById(R.id.pay_button);
             goToPayButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     Intent intent = new Intent(PayActivity.this, MainActivity.class);
@@ -87,6 +93,16 @@ public class PayActivity extends AppCompatActivity {
             });
 
             myListView.addView(myView);
+        }
+    }
+
+    private void setCurrentShoppingCartValue(){
+        TextView TextShoppingCartValue = (TextView) findViewById(R.id.current_shopping_cart_value);
+        DecimalFormat df = new DecimalFormat("####0.00");
+        if (shoppingCartValue == 0.00) {
+            TextShoppingCartValue.setText("Summe: (" + numberOfProductsInShoppingCart + " Artikel: 0.00 €)");
+        } else {
+            TextShoppingCartValue.setText("Summe: (" + numberOfProductsInShoppingCart + " Artikel: " + df.format(shoppingCartValue) + "€)");
         }
     }
 }
