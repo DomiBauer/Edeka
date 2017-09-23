@@ -123,14 +123,7 @@ public class ShoppingActivity extends FragmentActivity {
             }
         });
 
-        Button showProductPosition = (Button) myView.findViewById(R.id.show_position_of_product);
-        showProductPosition.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(ShoppingActivity.this, MapActivity.class);
-                startActivity(intent);
-            }
-        });
-
+        setupDisplayProductLocation (index, myView);
         //setUpMapCall(index, myView);
 
         myListView.addView(myView);
@@ -174,15 +167,15 @@ public class ShoppingActivity extends FragmentActivity {
         alert.show();
     }
 
-    private void setUpMapCall (int i, View currentView) {
+    private void setupDisplayProductLocation (int i, View myView) {
         final int index = i;
-        final View myView = currentView;
-        final Button showPositionOfProductButton = (Button) findViewById(R.id.show_position_of_product);
-        showPositionOfProductButton.setTag(productArray[index].id);
-
-        showPositionOfProductButton.setOnClickListener(new View.OnClickListener() {
+        final Button showProductPositionButton = (Button) myView.findViewById(R.id.show_position_of_product);
+        //showProductPositionButton.setTag(productArray[index].id);
+        showProductPositionButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Button addButton = myView.findViewWithTag(v.getTag());
+                Intent intent = new Intent(ShoppingActivity.this, MapActivity.class);
+                intent.putExtra ("Location", productArray[index].location);
+                startActivity(intent);
             }
         });
     }
