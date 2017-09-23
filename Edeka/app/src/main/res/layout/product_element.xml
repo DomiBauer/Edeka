@@ -104,9 +104,9 @@
             android:layout_marginTop="10dp"
             android:padding="10dp"
             android:drawablePadding="5dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorText"
             android:text="Auf Einkaufsliste"
-            android:textColor="@color/colorText"
+            android:textColor="@color/colorPrimaryDark"
             android:drawableLeft="@drawable/add_to_shopping_list_button"/>
 
     </RelativeLayout>

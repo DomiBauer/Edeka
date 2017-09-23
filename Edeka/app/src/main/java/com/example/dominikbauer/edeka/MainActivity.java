@@ -68,6 +68,8 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     public Product product18;
     public Product product19;
 
+    public int currentView = 1;
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -77,15 +79,21 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             switch (item.getItemId()) {
                 case R.id.navigation_einkaufszettel:
                     openShoppingList();
+                    currentView = 1;
                     return true;
                 case R.id.navigation_produktsuche:
                     productSearch();
+                    currentView = 2;
                     return true;
                 case R.id.navigation_angebote:
                     openDiscount();
+                    currentView = 3;
                     return true;
                 case R.id.navigation_ueber_uns:
-                    openAbout();
+                    if (currentView != 4) {
+                        openAbout();
+                    }
+                    currentView = 4;
                     return true;
             }
             return false;
@@ -213,14 +221,16 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View v) {
                 Button addButton = myView.findViewWithTag(v.getTag());
                 changeButtonColor(addButton, index);
-                //openShoppingList();
+                openShoppingList();
             }
         });
+
 
         myListView.addView(myView);
     }
 
     public void productSearch () {
+
         clearContent();
         shuffleArray ();
         setUpSearchViewGrid();
@@ -499,12 +509,12 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void setButtonColor (Button addToShoppingList, int index) {
         if (productArray[index].onShoppingList == true) {
-            addToShoppingList.setBackgroundColor(getResources().getColor(R.color.remove_button_color));
-            addToShoppingList.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_delete, 0, 0, 0);
+            addToShoppingList.setTextColor(getResources().getColor(R.color.remove_button_color));
+            addToShoppingList.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_remove_from_shopping_cart, 0, 0, 0);
             addToShoppingList.setText("Entfernen");
         } else {
-            addToShoppingList.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-            addToShoppingList.setCompoundDrawablesWithIntrinsicBounds(R.drawable.add_to_shopping_list_button, 0, 0, 0);
+            addToShoppingList.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+            addToShoppingList.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_to_shopping_cart, 0, 0, 0);
             addToShoppingList.setText("Auf Einkaufsliste");
             productArray[index].onShoppingList = false;
         }
@@ -512,13 +522,13 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void changeButtonColor (Button addButton, int index) {
         if (productArray[index].onShoppingList == false) {
-            addButton.setBackgroundColor(getResources().getColor(R.color.remove_button_color));
-            addButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_delete, 0, 0, 0);
+            addButton.setTextColor(getResources().getColor(R.color.remove_button_color));
+            addButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_remove_from_shopping_cart, 0, 0, 0);
             addButton.setText("Entfernen");
             productArray[index].onShoppingList = true;
         } else {
-            addButton.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-            addButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.add_to_shopping_list_button, 0, 0, 0);
+            addButton.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+            addButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_to_shopping_cart, 0, 0, 0);
             addButton.setText("Auf Einkaufsliste");
             productArray[index].onShoppingList = false;
         }

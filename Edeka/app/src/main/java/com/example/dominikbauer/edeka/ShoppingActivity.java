@@ -108,6 +108,23 @@ public class ShoppingActivity extends FragmentActivity {
             }
         });
 
+        Button goToPayButton = (Button) findViewById(R.id.go_to_pay_button);
+        goToPayButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(ShoppingActivity.this, PayActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button showProductPosition = (Button) myView.findViewById(R.id.show_position_of_product);
+        showProductPosition.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(ShoppingActivity.this, MapActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         //setUpMapCall(index, myView);
 
         myListView.addView(myView);
@@ -129,14 +146,14 @@ public class ShoppingActivity extends FragmentActivity {
 
     private void calculateShoppingCartValue (int index) {
         if (productArray[index].inShoppingCart == false) {
-            if (productArray[index].originalPrice == 0.00) {
+            if (productArray[index].discountPrice == 0.00) {
                 shoppingCartValue += productArray[index].originalPrice;
             } else {
                 shoppingCartValue += productArray[index].discountPrice;
             }
             numberOfProductsInShoppingCart ++;
         } else {
-            if (productArray[index].originalPrice == 0.00) {
+            if (productArray[index].discountPrice == 0.00) {
                 shoppingCartValue -= productArray[index].originalPrice;
             } else {
                 shoppingCartValue -= productArray[index].discountPrice;

@@ -31,8 +31,12 @@
         <activity
             android:name=".MapActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".ShoppingActivity"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".ShoppingActivity" />
+        <activity
+            android:name=".PayActivity"
+            android:label="@string/title_activity_pay"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
