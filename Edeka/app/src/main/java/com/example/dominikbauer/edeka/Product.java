@@ -31,6 +31,30 @@ public class Product implements Parcelable {
         this.location = location;
     }
 
+    protected Product(Parcel in) {
+        id = in.readInt();
+        productName = in.readString();
+        productDescription = in.readString();
+        originalPrice = in.readDouble();
+        discountPrice = in.readDouble();
+        imgURL = in.readString();
+        discount = in.readByte() != 0;
+        onShoppingList = in.readByte() != 0;
+        location = in.readInt();
+    }
+
+    public static final Creator<Product> CREATOR = new Creator<Product>() {
+        @Override
+        public Product createFromParcel(Parcel in) {
+            return new Product(in);
+        }
+
+        @Override
+        public Product[] newArray(int size) {
+            return new Product[size];
+        }
+    };
+
     @Override
     public int describeContents() {
         return 0;
@@ -38,5 +62,14 @@ public class Product implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(id);
+        parcel.writeString(productName);
+        parcel.writeString(productDescription);
+        parcel.writeDouble(originalPrice);
+        parcel.writeDouble(discountPrice);
+        parcel.writeString(imgURL);
+        parcel.writeByte((byte) (discount ? 1 : 0));
+        parcel.writeByte((byte) (onShoppingList ? 1 : 0));
+        parcel.writeInt(location);
     }
 }

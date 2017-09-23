@@ -5,6 +5,9 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ShoppingActivity extends FragmentActivity {
 
     @Override
@@ -12,9 +15,7 @@ public class ShoppingActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping);
 
-        /*Intent intent = getIntent();
-        Bundle extras = getIntent().getExtras();
-        System.out.println(extras.getInt("ShoppingListSize"));
-        /Product [] shoppingList = intent.getParcelableExtra("ShoppingList");*/
+        Bundle bundle = getIntent().getExtras();
+        ArrayList<Product> productList =  bundle.getParcelableArrayList("ShoppingList");
     }
 }

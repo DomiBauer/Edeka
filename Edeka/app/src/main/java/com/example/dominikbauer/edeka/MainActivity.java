@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -129,20 +130,16 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         Button startShoppingButton = (Button) findViewById(R.id.start_shopping_button);
         startShoppingButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                List<Product> list = new ArrayList<Product>();
+                ArrayList<Product> productList = new ArrayList<Product>();
 
                 for (int i = 0; i < productArray.length; i++) {
                     if (productArray[i].onShoppingList == true) {
-                        list.add(productArray[i]);
+                        productList.add(productArray[i]);
                     }
                 }
 
-                Product [] shoppingList = new Product[list.size()];
-                list.toArray(shoppingList);
-
                 Intent intent = new Intent(MainActivity.this, ShoppingActivity.class);
-                intent.putExtra ("ShoppingListSize", shoppingList.length);
-                intent.putExtra ("ShoppingList", shoppingList);
+                intent.putExtra ("ShoppingList", productList);
                 startActivity(intent);
             }
         });
@@ -384,7 +381,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         productArray [4] = product4;
         product5 = new Product(5, "Rockstar Energy Drink", "mit Taurin und Koffein, +0.25 Pfand, je 0,5l Dose, (1l=1.98)", 1.19, 0.99, "rockstar_energy_drink", true, false, 1);
         productArray [5] = product5;
-        product6 = new Product(6, "Löwenbräu Oktoberfestbier", "+3.10 Pfand, Träger 20x0,5l Flasche", 11.49, 10.99, "loewenbraeu_oktoberfestbier", true, false, 1);
+        product6 = new Product(6, "Löwenbräu Oktoberfestbier", "inkl. 3.10 Pfand, Träger 20x0,5l Flasche", 14.49, 13.99, "loewenbraeu_oktoberfestbier", true, false, 1);
         productArray [6] = product6;
         product7 = new Product(7, "Lorenz Crunchips - Paprika", "je 150-225g Beutel", 1.49, 0.99, "lorenz_crunchips_paprika", true, false, 1);
         productArray [7] = product7;
