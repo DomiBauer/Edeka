@@ -510,11 +510,11 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     private void setButtonColor (Button addToShoppingList, int index) {
         if (productArray[index].onShoppingList == true) {
             addToShoppingList.setTextColor(getResources().getColor(R.color.remove_button_color));
-            addToShoppingList.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_remove_from_shopping_cart, 0, 0, 0);
+            addToShoppingList.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_delete_red, 0, 0, 0);
             addToShoppingList.setText("Entfernen");
         } else {
             addToShoppingList.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-            addToShoppingList.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_to_shopping_cart, 0, 0, 0);
+            addToShoppingList.setCompoundDrawablesWithIntrinsicBounds(R.drawable.shopping_list_blau, 0, 0, 0);
             addToShoppingList.setText("Auf Einkaufsliste");
             productArray[index].onShoppingList = false;
         }
@@ -523,12 +523,12 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     private void changeButtonColor (Button addButton, int index) {
         if (productArray[index].onShoppingList == false) {
             addButton.setTextColor(getResources().getColor(R.color.remove_button_color));
-            addButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_remove_from_shopping_cart, 0, 0, 0);
+            addButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_delete_red, 0, 0, 0);
             addButton.setText("Entfernen");
             productArray[index].onShoppingList = true;
         } else {
             addButton.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-            addButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_to_shopping_cart, 0, 0, 0);
+            addButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.shopping_list_blau, 0, 0, 0);
             addButton.setText("Auf Einkaufsliste");
             productArray[index].onShoppingList = false;
         }
