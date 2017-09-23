@@ -14,12 +14,13 @@ public class Product implements Parcelable {
     public boolean discount;
     public boolean onShoppingList;
     public int location;
+    public boolean inShoppingCart;
 
     public Product() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public Product(int id, String productName, String productDescription, double originalPrice, double discountPrice, String imgURL, boolean discount, boolean onShoppingList, int location) {
+    public Product(int id, String productName, String productDescription, double originalPrice, double discountPrice, String imgURL, boolean discount, boolean onShoppingList, int location, boolean inShoppingCart) {
         this.id = id;
         this.productName = productName;
         this.productDescription = productDescription;
@@ -29,6 +30,7 @@ public class Product implements Parcelable {
         this.discount = discount;
         this.onShoppingList = onShoppingList;
         this.location = location;
+        this.inShoppingCart = inShoppingCart;
     }
 
     protected Product(Parcel in) {

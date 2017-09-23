@@ -13,6 +13,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
         android:text="Zur Kasse gehen"
         android:textSize="16dp"
         android:textColor="@color/colorText"
@@ -22,7 +23,8 @@
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:id="@+id/scrollView"
         android:layout_below="@id/go_to_pay_button">
 
@@ -32,15 +34,24 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:id="@+id/product_search_list"
+            android:id="@+id/started_shopping_list"
             android:orientation="vertical">
-
 
         </LinearLayout>
 
-
-
     </ScrollView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimaryDark"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Summe (1 Artikel): 12.99€"
+        android:textColor="@color/colorText"
+        android:textSize="16sp"
+        android:id="@+id/current_shopping_cart_value"/>
 
 
 </RelativeLayout>
