@@ -46,7 +46,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
 
 
-    public Product [] productArray = new Product[15];
+    public Product [] productArray = new Product[30];
     public Product product0;
     public Product product1;
     public Product product2;
@@ -67,6 +67,16 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     public Product product17;
     public Product product18;
     public Product product19;
+    public Product product20;
+    public Product product21;
+    public Product product22;
+    public Product product23;
+    public Product product24;
+    public Product product25;
+    public Product product26;
+    public Product product27;
+    public Product product28;
+    public Product product29;
 
     public int currentView = 1;
 
@@ -242,7 +252,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     public void productSearch () {
 
         clearContent();
-        shuffleArray ();
+        //shuffleArray ();
         setUpSearchViewGrid();
         drawProductSearch(productArray);
 
@@ -388,40 +398,70 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void createProducts () {
-        //Discount Prodcuts
-        product0 = new Product(0, "EDEKA Bananen", "1 kg", 2.29, 1.49, "edeka_bananen", true, false, 1, false);
+
+        //Product(int id, String productName, String productDescription, double originalPrice, double discountPrice, String imgURL, boolean discount, boolean onShoppingList, int location, boolean inShoppingCart)
+        product0 = new Product(0, "Hochland Käse-Ecken", "Inhalt: 200 g", 2.29, 0.00, "hochland_kaese_ecken", false, false, 53, false);
         productArray [0] = product0;
-        product1 = new Product(1, "Frische Feigen", "aus der Türkei, Kl. I, Stück", 0.69, 0.39, "frische_feigen", true, false, 2, false);
+        product1 = new Product(1, "EDEKA Bio Roggen Vollkornbrot", "Inhalt: 500 g", 1.39, 0.00, "edeka_bio_roggen_vollkornbrot", false, false, 7, false);
         productArray [1] = product1;
-        product2 = new Product(2, "Berchtesgadener Land Joghurt-Drink", "je 400g Packung", 0.99, 0.77, "berchtesgadener_land_joghurt_drink", true, false, 3, false);
+        product2 = new Product(2, "Nutella Nuss-Nougat-Creme", "Inhalt: 750 g", 3.89, 0.00, "nutella_nuss_nougat_creme_gross", false, false, 24, false);
         productArray [2] = product2;
-        product3 = new Product(3, "Tabaluga Bio-Ketchup", "78% Tomatenmark, 500ml Flasche", 1.89, 1.49, "tabaluga_bio_ketchup", true, false, 4, false);
+        product3 = new Product(3, "Knorr Fix für Spaghetti Bolognese", "Inhalt: 42 g", 0.89, 0.00, "knorr_fix_fuer_spaghetti_bolognese", false, false, 32, false);
         productArray [3] = product3;
-        product4 = new Product(4, "Kühne Ungarische Gurken", "Abtropfgewicht 360g, je 670g Glas", 1.59, 0.99, "kuehne_ungarische_gurken", true, false, 5, false);
+        product4 = new Product(4, "Knorr Knoblauch Grillsauce", "Inhalt: 250 ml", 1.29, 0.00, "knorr_knoblauch_grillsauce", false, false, 32, false);
         productArray [4] = product4;
-        product5 = new Product(5, "Rockstar Energy Drink", "mit Taurin und Koffein, +0.25 Pfand, je 0,5l Dose, (1l=1.98)", 1.19, 0.99, "rockstar_energy_drink", true, false, 6, false);
+        product5 = new Product(5, "Celebrations", "Inhalt: 269 g ", 4.29, 3.59, "celebrations", false, false, 17, false);
         productArray [5] = product5;
-        product6 = new Product(6, "Löwenbräu Oktoberfestbier", "inkl. 3.10 Pfand, Träger 20x0,5l Flasche", 14.49, 13.99, "loewenbraeu_oktoberfestbier", true, false, 7, false);
+        product6 = new Product(6, "Pizza Ristorante - Salami", "Inhalt: 320 g ", 2.69, 0.00, "pizza_ristorante_salami", false, false, 41, false);
         productArray [6] = product6;
-        product7 = new Product(7, "Lorenz Crunchips - Paprika", "je 150-225g Beutel", 1.49, 0.99, "lorenz_crunchips_paprika", true, false, 8, false);
+        product7 = new Product(7, "Iglo - 10 Fischstäbchen", "Inhalt: 300 g ", 2.59, 2.29, "fischstaebchen", false, false, 42, false);
         productArray [7] = product7;
-        product8 = new Product(8, "Teekanne Sanfte Kamille", "je 18/20er Packung", 1.59, 1.29, "teekanne_sanfte_kamille", true, false, 9, false);
+        product8 = new Product(8, "Zewa Wisch & Weg Küchentücher", "Inhalt: 4x 45 Blatt ", 2.79, 0.00, "zewa_wisch_und_weg", false, false, 68, false);
         productArray [8] = product8;
-        product9 = new Product(9, "Odol-med3 Zahncreme", "75ml Tube", 1.59, 0.89, "odol_med3_zahncreme", true, false, 10, false);
+        product9 = new Product(9, "EDEKA Tafeltrauben - Hell", "Inhalt: 500g (1 kg = 2,38 €)", 1.19, 1.09, "tafeltrauben_hell", false, false, 1, false);
         productArray [9] = product9;
-
-
-        //Usual Products
-        product10 = new Product(10, "Hochland Käse-Ecken", "Inhalt: 200 g", 2.29, 0.00, "hochland_kaese_ecken", false, false, 11, false);
+        product10 = new Product(10, "EDEKA Mini-Rispentomaten", "Inhalt: 200g (100 g = 1,40 €)", 2.79, 0.00, "mini_rispen_tomaten", false, false, 1, false);
         productArray [10] = product10;
-        product11 = new Product(11, "EDEKA Bio Roggen Vollkornbrot", "Inhalt: 500 g", 1.39, 0.00, "edeka_bio_roggen_vollkornbrot", false, false, 12, false);
+        product11 = new Product(11, "EDEKA Bio Ananas", "Inhalt: 1 Stück", 2.99, 2.59, "ananas", false, false, 1, false);
         productArray [11] = product11;
-        product12 = new Product(12, "Nutella Nuss-Nougat-Creme", "Inhalt: 750 g", 3.89, 0.00, "nutella_nuss_nougat_creme_gross", false, false, 13, false);
+        product12 = new Product(12, "Chiquita Mini Bananen im Beutel", "Inhalt: 50g (100 g = 0,40 €)", 0.99, 0.00, "mini_bananen", false, false, 1, false);
         productArray [12] = product12;
-        product13 = new Product(13, "Knorr Fix für Spaghetti Bolognese", "Inhalt: 42 g", 0.89, 0.00, "knorr_fix_fuer_spaghetti_bolognese", false, false, 14, false);
+        product13 = new Product(13, "Sonnendorfer Bio Freilandeier", "Inhalt: 10 Stück", 3.59, 0.00, "bio_eier", false, false, 1, false);
         productArray [13] = product13;
-        product14 = new Product(14, "Knorr Knoblauch Grillsauce", "Inhalt: 250 ml", 1.29, 0.00, "knorr_knoblauch_grillsauce", false, false, 15, false);
+        product14 = new Product(14, "EDEKA Bio Pflaumen rot", "Inhalt: 500g (1 kg = 4,98 €)", 2.49, 0.00, "pflaumen", false, false, 1, false);
         productArray [14] = product14;
+        product14 = new Product(14, "Florette Zart & Feurig", "Inhalt: 100g", 1.99, 1.79, "salat", false, false, 1, false);
+        productArray [14] = product14;
+        product15 = new Product(15, "Innocent Antioxidant Super Smoothie", "Inhalt: 360ml (1 l = 6,92 €)", 2.49, 2.29, "innocent", false, false, 1, false);
+        productArray [15] = product15;
+        product16 = new Product(16, "Leerdammer Léger Scheiben", "Inhalt: 140g (100 g = 1,21 €)", 1.69, 1.29, "leerdammer", false, false, 46, false);
+        productArray [16] = product16;
+        product17 = new Product(17, "Weihenstephan Haltbare Alpenmilch 1,5%", "Inhalt: 1l", 1.09, 0.99, "milch", false, false, 46, false);
+        productArray [17] = product17;
+        product18 = new Product(18, "Develey Senf mittelscharf", "Inhalt: 250ml (100 ml = 0,56 €)", 1.39, 0.00, "senf", false, false, 31, false);
+        productArray [18] = product18;
+        product19 = new Product(19, "Specht Gewürzgurken", "Inhalt: 360g (1 kg = 5,14 €)", 1.85, 1.49, "gurken", false, false, 34, false);
+        productArray [19] = product19;
+        product20 = new Product(20, "Maggi Fix & frisch Käse-Spätzle", "Inhalt: 35g (100 g = 2,54 €)", 0.89, 0.00, "spaetzle", false, false, 32, false);
+        productArray [20] = product20;
+        product21 = new Product(21, "Seeberger Mandeln", "Inhalt: 200g (100 g = 2 €)", 3.99, 0.00, "mandeln", false, false, 6, false);
+        productArray [21] = product21;
+        product22 = new Product(22, "Hacker-Pschorr Oktoberfestbier", "Inhalt: 20x0,50l inkl. 4,50€ Pfand", 20.99, 18.99, "bier", false, false, 62, false);
+        productArray [22] = product22;
+        product23 = new Product(23, "Duplo", "Inhalt: 10 Riegel", 2.19, 1.39, "duplo", false, false, 18, false);
+        productArray [23] = product23;
+        product24 = new Product(24, "Mövenpick Eis Bourbon Vanille", "Inhalt: 900ml (1 l = 4,21 €)", 3.79, 3.19, "eis", false, false, 73, false);
+        productArray [24] = product24;
+        product25 = new Product(25, "Campari Bitter", "Inhalt: 0,70l (1 l = 16,41 €)", 11.49, 0.00, "campari", false, false, 13, false);
+        productArray [25] = product25;
+        product26 = new Product(26, "Coca-Cola", "Inhalt: 4x1,50l inkl. 1,00€ Pfand", 6.16, 5.39, "cola", false, false, 59, false);
+        productArray [26] = product26;
+        product27 = new Product(27, "Fa Duschgel for Men Kick Off", "Inhalt: 250ml (100 ml = 0,52 €)", 1.29, 1.09, "fa_duschgel", false, false, 69, false);
+        productArray [27] = product27;
+        product28 = new Product(28, "Persil Colorwaschmittel Power Mix", "Inhalt: 423g (1 kg = 14,16 €)", 5.99, 0.00, "persil", false, false, 67, false);
+        productArray [28] = product28;
+        product29 = new Product(29, "Barilla Pasta Nudeln Penne Rigate", "Inhalt: 500g (1 kg = 3,18 €)", 1.59, 1.39, "barilla", false, false, 28, false);
+        productArray [29] = product29;
     }
 
     public void onMapReady(GoogleMap googleMap) {
