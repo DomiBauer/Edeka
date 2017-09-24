@@ -436,7 +436,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         productArray [15] = product15;
         product16 = new Product(16, "Leerdammer Léger Scheiben", "Inhalt: 140g (100 g = 1,21 €)", 1.69, 1.29, "leerdammer", false, false, 46, false);
         productArray [16] = product16;
-        product17 = new Product(17, "Weihenstephan Haltbare Alpenmilch 1,5%", "Inhalt: 1l", 1.09, 0.99, "milch", false, false, 46, false);
+        product17 = new Product(17, "Weihenstephan Haltbare Milch 1,5%", "Inhalt: 1l", 1.09, 0.99, "milch", false, false, 46, false);
         productArray [17] = product17;
         product18 = new Product(18, "Develey Senf mittelscharf", "Inhalt: 250ml (100 ml = 0,56 €)", 1.39, 0.00, "senf", false, false, 31, false);
         productArray [18] = product18;
@@ -458,7 +458,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         productArray [26] = product26;
         product27 = new Product(27, "Fa Duschgel for Men Kick Off", "Inhalt: 250ml (100 ml = 0,52 €)", 1.29, 1.09, "fa_duschgel", false, false, 69, false);
         productArray [27] = product27;
-        product28 = new Product(28, "Persil Colorwaschmittel Power Mix", "Inhalt: 423g (1 kg = 14,16 €)", 5.99, 0.00, "persil", false, false, 67, false);
+        product28 = new Product(28, "Persil Color Power Mix", "Inhalt: 423g (1 kg = 14,16 €)", 5.99, 0.00, "persil", false, false, 67, false);
         productArray [28] = product28;
         product29 = new Product(29, "Barilla Pasta Nudeln Penne Rigate", "Inhalt: 500g (1 kg = 3,18 €)", 1.59, 1.39, "barilla", false, false, 28, false);
         productArray [29] = product29;
