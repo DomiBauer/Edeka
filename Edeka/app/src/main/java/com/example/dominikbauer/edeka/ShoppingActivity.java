@@ -202,9 +202,9 @@ public class ShoppingActivity extends FragmentActivity {
         TextView TextShoppingCartValue = (TextView) findViewById(R.id.current_shopping_cart_value);
         DecimalFormat df = new DecimalFormat("####0.00");
         if (shoppingCartValue == 0.00) {
-            TextShoppingCartValue.setText("Summe: (" + numberOfProductsInShoppingCart + " Artikel: 0.00 €)");
+            TextShoppingCartValue.setText("Summe: " + numberOfProductsInShoppingCart + " Artikel: 0.00 €");
         } else {
-            TextShoppingCartValue.setText("Summe: (" + numberOfProductsInShoppingCart + " Artikel: " + df.format(shoppingCartValue) + "€)");
+            TextShoppingCartValue.setText("Summe: " + numberOfProductsInShoppingCart + " Artikel: " + df.format(shoppingCartValue) + "€");
         }
     }
 
